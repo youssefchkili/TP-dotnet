@@ -1,0 +1,39 @@
+@model List<object>
+
+@{
+    ViewData["Title"] = "Films avec Genres";
+}
+
+<div class="container mt-4">
+    <h1>Films avec leurs Genres</h1>
+    <p class="lead">Liste des films avec leur genre (Jointure)</p>
+
+    <a asp-action="Index" class="btn btn-secondary mb-3">← Retour</a>
+
+    @if (Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Titre du Film</th>
+                    <th>Nom du Genre</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (dynamic item in Model)
+                {
+                    <tr>
+                        <td>@item.MovieTitle</td>
+                        <td><span class="badge bg-info">@item.GenreName</span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Aucun film trouvé.
+        </div>
+    }
+</div>

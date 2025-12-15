@@ -1,0 +1,45 @@
+@model List<MyFirstApp.Models.Movie>
+
+@{
+    ViewData["Title"] = "Films Action en Stock";
+}
+
+<div class="container mt-4">
+    <h1>Films Action en Stock</h1>
+    <p class="lead">Films du genre "Action" avec un stock supérieur à 0</p>
+
+    <a asp-action="Index" class="btn btn-secondary mb-3">← Retour</a>
+
+    @if (Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Genre</th>
+                    <th>Date d'ajout</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var movie in Model)
+                {
+                    <tr>
+                        <td>@movie.Id</td>
+                        <td>@movie.Name</td>
+                        <td>@movie.Genre?.Name</td>
+                        <td>@movie.DateAjoutMovie?.ToString("dd/MM/yyyy")</td>
+                        <td><span class="badge bg-success">@movie.Stock</span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Aucun film Action en stock trouvé.
+        </div>
+    }
+</div>

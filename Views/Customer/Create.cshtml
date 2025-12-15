@@ -1,0 +1,47 @@
+@model MyFirstApp.Models.Customer
+
+@{
+    ViewData["Title"] = "Créer un Client";
+}
+
+<h1>Créer un nouveau Client</h1>
+
+<hr />
+
+@* Afficher les erreurs de validation *@
+<partial name="_ValidationErrors" />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="control-label">Nom</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="MembershipTypeId" class="control-label">Membership Type</label>
+                <select asp-for="MembershipTypeId" class="form-control">
+                    <option value="">-- Sélectionner un type --</option>
+                    @foreach (var mt in ViewBag.MembershipTypes)
+                    {
+                        <option value="@mt.Id">@mt.Id - Discount: @mt.DiscountRate%</option>
+                    }
+                </select>
+                <span asp-validation-for="MembershipTypeId" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

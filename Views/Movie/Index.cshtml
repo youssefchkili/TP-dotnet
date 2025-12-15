@@ -1,0 +1,71 @@
+@model IEnumerable<MyFirstApp.Models.Movie>
+
+@{
+    ViewBag.Title = "Index des Films";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Créer un nouveau film</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParam"]">Id</a>
+            </th>
+            <th>Image</th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Name</a>
+            </th>
+            <th>Date d'ajout</th>
+            <th>Genre</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Id</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(movie.ImageFile))
+                    {
+                        <img src="~/images/@movie.ImageFile" alt="@movie.Name" style="width: 50px; height: 50px; object-fit: cover;" />
+                    }
+                    else
+                    {
+                        <span class="text-muted">Pas d'image</span>
+                    }
+                </td>
+                <td>@movie.Name</td>
+                <td>@(movie.DateAjoutMovie?.ToString("dd/MM/yyyy") ?? "N/A")</td>
+                <td>@movie.Genre?.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@movie.Id" class="btn btn-sm btn-warning">Modifier</a>
+                    <a asp-action="Details" asp-route-id="@movie.Id" class="btn btn-sm btn-info">Détails</a>
+                    <a asp-action="Delete" asp-route-id="@movie.Id" class="btn btn-sm btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !ViewData.ContainsKey("CurrentPage") || (int)ViewData["CurrentPage"] <= 1 ? "disabled" : "";
+    var nextDisabled = !ViewData.ContainsKey("HasNextPage") || !(bool)ViewData["HasNextPage"] ? "disabled" : "";
+}
+
+<div class="btn-group" role="group">
+    <a asp-action="Index" 
+       asp-route-pageNumber="@((int)(ViewData["CurrentPage"] ?? 1) - 1)"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       class="btn btn-secondary @prevDisabled">Précédent</a>
+    <button type="button" class="btn btn-secondary" disabled>Page @ViewData["CurrentPage"]</button>
+    <a asp-action="Index" 
+       asp-route-pageNumber="@((int)(ViewData["CurrentPage"] ?? 1) + 1)"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       class="btn btn-secondary @nextDisabled">Suivant</a>
+</div>

@@ -1,0 +1,31 @@
+@model MyFirstApp.Models.MembershipType
+
+@{
+    ViewData["Title"] = "Delete Membership Type";
+}
+
+<h1>Delete Membership Type</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">Id</dt>
+        <dd class="col-sm-9">@Model.Id</dd>
+        
+        <dt class="col-sm-3">Signup Fee</dt>
+        <dd class="col-sm-9">@Model.SignupFee</dd>
+        
+        <dt class="col-sm-3">Duration (Months)</dt>
+        <dd class="col-sm-9">@Model.DurationInMonths</dd>
+        
+        <dt class="col-sm-3">Discount Rate (%)</dt>
+        <dd class="col-sm-9">@Model.DiscountRate</dd>
+    </dl>
+    
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>

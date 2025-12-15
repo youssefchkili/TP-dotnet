@@ -1,0 +1,43 @@
+@model List<MyFirstApp.Models.Movie>
+
+@{
+    ViewData["Title"] = "Films Ordonnés";
+}
+
+<div class="container mt-4">
+    <h1>Films Ordonnés</h1>
+    <p class="lead">Films ordonnés par date de sortie puis par titre alphabétique</p>
+
+    <a asp-action="Index" class="btn btn-secondary mb-3">← Retour</a>
+
+    @if (Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Date d'ajout</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var movie in Model)
+                {
+                    <tr>
+                        <td>@movie.Id</td>
+                        <td>@movie.Name</td>
+                        <td>@movie.DateAjoutMovie?.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@movie.Stock</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Aucun film trouvé.
+        </div>
+    }
+</div>

@@ -1,0 +1,74 @@
+@model MyFirstApp.Models.AuditLog
+
+@{
+    ViewData["Title"] = "Détails de l'Audit";
+}
+
+<div class="container mt-4">
+    <h1>🔍 Détails de l'Audit #@Model.Id</h1>
+    
+    <hr />
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5>Informations Générales</h5>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Table concernée :</dt>
+                <dd class="col-sm-9">
+                    <span class="badge bg-info fs-6">@Model.TableName</span>
+                </dd>
+
+                <dt class="col-sm-3">Action effectuée :</dt>
+                <dd class="col-sm-9">
+                    @if (Model.Action == "Added")
+                    {
+                        <span class="badge bg-success fs-6">✚ Ajouté</span>
+                    }
+                    else if (Model.Action == "Modified")
+                    {
+                        <span class="badge bg-warning text-dark fs-6">✎ Modifié</span>
+                    }
+                    else if (Model.Action == "Deleted")
+                    {
+                        <span class="badge bg-danger fs-6">✖ Supprimé</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3">Clé de l'entité :</dt>
+                <dd class="col-sm-9">
+                    <code class="fs-6">@Model.EntityKey</code>
+                </dd>
+
+                <dt class="col-sm-3">Date et heure :</dt>
+                <dd class="col-sm-9">
+                    <strong>@Model.Date.ToLocalTime().ToString("dddd dd MMMM yyyy à HH:mm:ss")</strong>
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Changes))
+    {
+        <div class="card mt-4">
+            <div class="card-header bg-warning">
+                <h5>📝 Détails des Modifications</h5>
+            </div>
+            <div class="card-body">
+                <pre class="bg-light p-3 rounded"><code>@Model.Changes</code></pre>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info mt-4">
+            <strong>ℹ️ Aucun détail de modification</strong>
+            <p class="mb-0">Cette action ne contient pas de détails de changement (ajout ou suppression).</p>
+        </div>
+    }
+
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">← Retour à la liste</a>
+    </div>
+</div>

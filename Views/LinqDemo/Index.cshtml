@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "LINQ Demonstrations";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Activités LINQ</h1>
+
+    <div class="list-group">
+        <a asp-action="ActionMoviesInStock" class="list-group-item list-group-item-action">
+            <h5 class="mb-1">1. Films Action en Stock</h5>
+            <p class="mb-1">Lister tous les films associés au genre « Action » avec stock > 0</p>
+        </a>
+
+        <a asp-action="MoviesOrderedByDateAndTitle" class="list-group-item list-group-item-action">
+            <h5 class="mb-1">2. Films Ordonnés</h5>
+            <p class="mb-1">Lister tous les films ordonnés par date de sortie puis par titre alphabétique</p>
+        </a>
+
+        <a asp-action="TotalMoviesCount" class="list-group-item list-group-item-action">
+            <h5 class="mb-1">3. Nombre Total de Films</h5>
+            <p class="mb-1">Calculer le nombre total de films dans le magasin</p>
+        </a>
+
+        <a asp-action="SubscribedCustomersWithHighDiscount" class="list-group-item list-group-item-action">
+            <h5 class="mb-1">4. Clients Abonnés</h5>
+            <p class="mb-1">Clients abonnés à la newsletter avec remise > 10%</p>
+        </a>
+
+        <a asp-action="MoviesWithGenres" class="list-group-item list-group-item-action">
+            <h5 class="mb-1">5. Films avec Genres</h5>
+            <p class="mb-1">Afficher la liste des films avec leur genre (Jointure)</p>
+        </a>
+
+        <a asp-action="Top3PopularGenres" class="list-group-item list-group-item-action">
+            <h5 class="mb-1">6. Top 3 Genres Populaires</h5>
+            <p class="mb-1">Retourner les 3 genres les plus populaires</p>
+        </a>
+    </div>
+</div>

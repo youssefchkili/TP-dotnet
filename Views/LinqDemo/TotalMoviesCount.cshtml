@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Nombre Total de Films";
+}
+
+<div class="container mt-4">
+    <h1>Nombre Total de Films</h1>
+    <p class="lead">Total des films dans le magasin</p>
+
+    <a asp-action="Index" class="btn btn-secondary mb-3">← Retour</a>
+
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">Total de Films</h5>
+            <p class="display-1 text-primary">@ViewBag.TotalCount</p>
+            <p class="card-text">films dans la base de données</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+@model MyFirstApp.ViewModels.MovieVM
+
+@{
+    ViewData["Title"] = "Créer un Film";
+}
+
+<div class="container mt-4">
+    <p>
+        <a asp-action="Index" class="btn btn-link">Back to List</a>
+    </p>
+    
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Name</h4>
+            
+            @* Afficher les erreurs de validation *@
+            <partial name="_ValidationErrors" />
+            
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                
+                <div class="mb-3">
+                    <label asp-for="movie.Name" class="form-label fw-bold">Movie Added :</label>
+                    <input asp-for="movie.Name" class="form-control" placeholder="Enter Movie name" />
+                    <span asp-validation-for="movie.Name" class="text-danger"></span>
+                </div>
+                
+                <div class="mb-3">
+                    <label asp-for="movie.DateAjoutMovie" class="form-label fw-bold">Date Added :</label>
+                    <input asp-for="movie.DateAjoutMovie" type="datetime-local" class="form-control" />
+                    <span asp-validation-for="movie.DateAjoutMovie" class="text-danger"></span>
+                </div>
+                
+                <div class="mb-3">
+                    <label asp-for="movie.GenreId" class="form-label fw-bold">Genre :</label>
+                    <select asp-for="movie.GenreId" class="form-select">
+                        <option value="">-- Sélectionner un genre --</option>
+                        @foreach (var genre in ViewBag.Genres)
+                        {
+                            <option value="@genre.Id">@genre.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="movie.GenreId" class="text-danger"></span>
+                </div>
+                
+                <div class="mb-3">
+                    <label asp-for="movie.Stock" class="form-label fw-bold">Stock :</label>
+                    <input asp-for="movie.Stock" type="number" class="form-control" placeholder="Enter stock quantity" min="0" value="0" />
+                    <span asp-validation-for="movie.Stock" class="text-danger"></span>
+                </div>
+                
+                <div class="mb-4">
+                    <label asp-for="photo" class="form-label fw-bold">Photo (optionnelle)</label>
+                    <div class="d-flex align-items-center gap-2">
+                        <input asp-for="photo" type="file" class="form-control" accept="image/*" id="photoInput" style="display: none;" />
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('photoInput').click()">
+                            Choisir le fichier
+                        </button>
+                        <span id="fileName" class="text-muted">aucun fichier sélectionné</span>
+                    </div>
+                    <span asp-validation-for="photo" class="text-danger d-block mt-1"></span>
+                    <small class="text-muted">Vous pouvez créer un film sans photo</small>
+                </div>
+                
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-info text-white">Save Info</button>
+                    <a asp-action="Index" class="btn btn-success">Back To List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        // Afficher le nom du fichier sélectionné
+        document.getElementById('photoInput').addEventListener('change', function(e) {
+            var fileName = e.target.files.length > 0 ? e.target.files[0].name : 'aucun fichier sélectionné';
+            document.getElementById('fileName').textContent = fileName;
+        });
+    </script>
+}

@@ -1,0 +1,43 @@
+@model List<object>
+
+@{
+    ViewData["Title"] = "Top 3 Genres Populaires";
+}
+
+<div class="container mt-4">
+    <h1>Top 3 Genres Populaires</h1>
+    <p class="lead">Les 3 genres avec le plus de films</p>
+
+    <a asp-action="Index" class="btn btn-secondary mb-3">← Retour</a>
+
+    @if (Model.Any())
+    {
+        <div class="row">
+            @{
+                int rank = 1;
+                var badges = new[] { "bg-warning", "bg-secondary", "bg-info" };
+            }
+            @foreach (dynamic genre in Model)
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-header @badges[rank - 1] text-white">
+                            <h5>#@rank - @genre.GenreName</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <p class="display-4">@genre.MovieCount</p>
+                            <p class="card-text">films</p>
+                        </div>
+                    </div>
+                </div>
+                rank++;
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Aucun genre trouvé.
+        </div>
+    }
+</div>

@@ -1,0 +1,34 @@
+@model MyFirstApp.Models.Customer
+
+@{
+    ViewData["Title"] = "Détails du Client";
+}
+
+<h1>Détails du Client</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Id</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+        
+        <dt class="col-sm-2">Nom</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+        
+        <dt class="col-sm-2">Membership Type</dt>
+        <dd class="col-sm-10">@Model.MembershipType?.Id</dd>
+        
+        <dt class="col-sm-2">Discount Rate</dt>
+        <dd class="col-sm-10">@Model.MembershipType?.DiscountRate%</dd>
+        
+        <dt class="col-sm-2">Signup Fee</dt>
+        <dd class="col-sm-10">@Model.MembershipType?.SignupFee</dd>
+        
+        <dt class="col-sm-2">Duration (Months)</dt>
+        <dd class="col-sm-10">@Model.MembershipType?.DurationInMonths</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Modifier</a>
+    <a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>
+</div>

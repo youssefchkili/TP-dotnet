@@ -1,0 +1,50 @@
+@model List<MyFirstApp.Models.Customer>
+
+@{
+    ViewData["Title"] = "Clients Abonnés";
+}
+
+<div class="container mt-4">
+    <h1>Clients Abonnés avec Remise > 10%</h1>
+    <p class="lead">Clients abonnés à la newsletter avec une carte de membre offrant plus de 10% de remise</p>
+
+    <a asp-action="Index" class="btn btn-secondary mb-3">← Retour</a>
+
+    @if (Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Type de Membre</th>
+                    <th>Taux de Remise</th>
+                    <th>Abonné Newsletter</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model)
+                {
+                    <tr>
+                        <td>@customer.Id</td>
+                        <td>@customer.Name</td>
+                        <td>@customer.MembershipType?.Id</td>
+                        <td><span class="badge bg-success">@customer.MembershipType?.DiscountRate%</span></td>
+                        <td>
+                            @if (customer.IsSubscribed)
+                            {
+                                <span class="badge bg-primary">✓ Abonné</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Aucun client abonné avec remise > 10% trouvé.
+        </div>
+    }
+</div>

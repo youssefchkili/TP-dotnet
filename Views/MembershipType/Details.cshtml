@@ -1,0 +1,28 @@
+@model MyFirstApp.Models.MembershipType
+
+@{
+    ViewData["Title"] = "Membership Type Details";
+}
+
+<h1>Membership Type Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">Id</dt>
+        <dd class="col-sm-9">@Model.Id</dd>
+        
+        <dt class="col-sm-3">Signup Fee</dt>
+        <dd class="col-sm-9">@Model.SignupFee</dd>
+        
+        <dt class="col-sm-3">Duration (Months)</dt>
+        <dd class="col-sm-9">@Model.DurationInMonths</dd>
+        
+        <dt class="col-sm-3">Discount Rate (%)</dt>
+        <dd class="col-sm-9">@Model.DiscountRate</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

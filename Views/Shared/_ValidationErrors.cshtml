@@ -1,0 +1,12 @@
+@if (ViewBag.Errors != null && ((List<string>)ViewBag.Errors).Any())
+{
+    <div class="alert alert-danger" role="alert">
+        <h5 class="alert-heading">Erreurs de validation :</h5>
+        <ul class="mb-0">
+            @foreach (string error in ViewBag.Errors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}
