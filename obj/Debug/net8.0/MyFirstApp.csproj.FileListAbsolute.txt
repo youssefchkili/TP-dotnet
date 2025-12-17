@@ -1,8 +1,0 @@
-C:\Users\youss\OneDrive\Desktop\My Work\GL\GL INSAT\.NET\MyFirstApp\obj\Debug\net8.0\MyFirstApp.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\youss\OneDrive\Desktop\My Work\GL\GL INSAT\.NET\MyFirstApp\obj\Debug\net8.0\MyFirstApp.AssemblyInfoInputs.cache
-C:\Users\youss\OneDrive\Desktop\My Work\GL\GL INSAT\.NET\MyFirstApp\obj\Debug\net8.0\MyFirstApp.AssemblyInfo.cs
-C:\Users\youss\OneDrive\Desktop\My Work\GL\GL INSAT\.NET\MyFirstApp\obj\Debug\net8.0\MyFirstApp.csproj.CoreCompileInputs.cache
-C:\Users\youss\OneDrive\Desktop\My Work\GL\GL INSAT\.NET\MyFirstApp\obj\Debug\net8.0\MyFirstApp.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\youss\OneDrive\Desktop\My Work\GL\GL INSAT\.NET\MyFirstApp\obj\Debug\net8.0\MyFirstApp.RazorAssemblyInfo.cache
-C:\Users\youss\OneDrive\Desktop\My Work\GL\GL INSAT\.NET\MyFirstApp\obj\Debug\net8.0\MyFirstApp.RazorAssemblyInfo.cs
-C:\Users\youss\OneDrive\Desktop\My Work\GL\GL INSAT\.NET\MyFirstApp\obj\Debug\net8.0\rpswa.dswa.cache.json
