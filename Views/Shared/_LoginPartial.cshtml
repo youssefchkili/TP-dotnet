@@ -1,0 +1,31 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<MyFirstApp.Models.ApplicationUser> SignInManager
+@inject UserManager<MyFirstApp.Models.ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    var currentUser = await UserManager.GetUserAsync(User);
+    var displayName = currentUser != null ? $"{currentUser.FirstName} {currentUser.LastName}" : User.Identity?.Name;
+    
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+            Bonjour @displayName!
+        </a>
+    </li>
+    <li class="nav-item">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="nav-link btn btn-link text-dark">Déconnexion</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">S'inscrire</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Se connecter</a>
+    </li>
+}
+</ul>
